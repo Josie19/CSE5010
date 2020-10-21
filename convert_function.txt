@@ -1,0 +1,24 @@
+
+CONVERT(G):
+1. Let k be the number of states of G.
+2. If k = 2, then G must consist of a start state, an accept state, and a single
+arrow connecting them and labeled with a regular expression R.
+Return the expression R.
+3. If k > 2, we select any state qrip ∈ Q different from qstart and qaccept and let
+G0 be the GNFA (Q0
+, Σ, δ0
+, qstart, qaccept), where
+Q
+0 = Q − {qrip},
+and for any qi ∈ Q0 − {qaccept} and any qj ∈ Q0 − {qstart}, let
+δ
+0
+(qi
+, qj ) = (R1)(R2)
+∗
+(R3) ∪ (R4),
+for R1 = δ(qi
+, qrip), R2 = δ(qrip, qrip), R3 = δ(qrip, qj ), and R4 = δ(qi
+, qj ).
+4. Compute CONVERT(G0
+) and return this valu

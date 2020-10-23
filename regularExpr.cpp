@@ -7,21 +7,21 @@
 */
 
 #include<iostream>
-#include<sstream>
+#include<fstream>
 #include<string>
 
 using namespace std;
 /*-----------------------------------------------------version 1------------------------------------------------------------------*/
 int main(){
-    string filename = "file.txt"
+    string filename = "file.txt";
     fstream read;
-    read.open(filename.c_str());
+    read.open(filename.c_str(),ios::in);//file handle
 
-    string re1 = "";
-    string re2 = "";
+    string re1 = "(a+b)";
+    string re2 = "(a+b)*";
     string re3 = re1+re2;
 
-    string possible_string;
+    string possible_string;//read line 1
     read >> possible_string;
     read.close();
     
@@ -37,21 +37,23 @@ int main(){
 }
 
 
-
-
-
 /*------------------------------------------------------version 2------------------------------------------------------------------
 
 //prototypes
-string convertG(string, int);//might end up using 2d vector to store edge values to an index corresponding to a specific node
+string convertG(map<string,string>);//might end up using 2d vector to store edge values to an index corresponding to a specific node
 //driver function
 int main(){
+    map<string,string> dfa
+    int states;
    string filename = "file.txt"; 
    fstream read;
-   read.open(filename.c_str());
-   for(int i = 0; i < 1; i++){
-       read >> dfa >> k;
+   read.open(filename.c_str(), ios::in);
+   read >> states;
+   for(int i(0), string node, expr; i < states; i++){
+       read >> node >> expr;
+       convertG(dfa);
    }
+   string regular = convertG();
    //trim the stream
    //then convert to k to int using stoi()
    //invoke convertG()
@@ -59,7 +61,7 @@ int main(){
    return 0; 
 }
 //implementation
-string convertG(string dfa, int k){
+string convertG(map<string,string>dfa){
     string regexp;
 
     return regexp;

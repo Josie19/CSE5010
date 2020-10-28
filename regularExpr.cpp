@@ -99,9 +99,9 @@ string convertG(map<string,int> dfa){
         //insert s and a to form length+2 gnfa
         //gnfa.insert({"s",0});
         //gnfa.insert({"a",4});
-        for(iter = gnfa.begin(); iter != gnfa.end(); iter++){//for debugging purposes
+        for(iter = gnfa.begin(); iter != gnfa.end(); iter++){
             string tempexp = iter->first;
-            write << tempexp << "U";
+            write << tempexp;
             regexp += iter->first;
             //erase pair
         }

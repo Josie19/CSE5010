@@ -3,6 +3,7 @@
     purpose:converting 3 state DFA into regular expression
     version:1 -->only determining if string is accepted
     version:2 -->will read in values and construct an FA to convert and return regular exxpression
+    versio:3 -->will use p,q,k to return a regular expression; k > 0 will use recursion to return the regular expression
     date: October 21, 2020
 */
 
@@ -38,7 +39,7 @@ int main(){
 }
 */
 
-/*------------------------------------------------------version 2------------------------------------------------------------------*/
+/*------------------------------------------------------version 2------------------------------------------------------------------
 
 //prototypes
 string convertG(map<string,int> dfa);//might end up using 2d vector to store edge values to an index corresponding to a specific node
@@ -77,7 +78,7 @@ string convertG(map<string,int> dfa){
             write << tempexp << endl;
             regexp += iter->first;
             //erase pair
-            /*
+            //comment out starting here
             //are their types able to be compared?
             if(iter == gnfa.end()-1){
                 string tempexp = iter->first;
@@ -91,7 +92,7 @@ string convertG(map<string,int> dfa){
                 regexp += iter->first;
                 //erase pair
             }
-            */
+            //ending here
         }//should have a 2 state gnfa as well as the final regular expression
     }
     else if(length > 2){
@@ -117,3 +118,59 @@ string convertG(map<string,int> dfa){
 
     return regexp;
 }
+*/
+/*------------------------------------------------------version 3------------------------------------------------------------------*/
+string convert(int,int,int);
+
+int main(){
+    //1 <= k <=3
+    //1 <= p,q <=3
+    cout << convert(2,2,1) << endl;
+    //cout << "(" + convert(1,2,3) + ")";
+}
+//intermediaries: k
+//start node: p
+//next node: q
+string convert(int p, int q, int k){
+    string regexp;
+    if(k==0){//with no intermediaries
+        if(p==1){
+            if(q==1){
+                return "e";
+            }
+            if(q==2){
+                return "a+b";
+            }
+            if(q==3){
+                return "";
+            }
+        }
+        if(p==2){
+            if(q==1){
+                return "";
+            }
+            if(q==2){
+                return "a+e";
+            }
+            if(q==3){
+                return "b";
+            }
+        }
+        if(p==3){
+            if(q==1){
+                return "a";
+            }
+            if(q==2){
+                return "b";
+            }
+            if(q==3){
+                return "e";
+            }
+        }
+    }
+    else{//with intermediaries
+        return regexp = "(" + convert(p,q,k-1) + ")" + "U" + "(" + convert(p,k,k-1) + ")" + "(" + convert(k,k,k-1) + "*" + ")" + "(" + convert(k,q,k-1) + ")";
+    }
+    return regexp;
+}
+

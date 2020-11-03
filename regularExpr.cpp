@@ -125,8 +125,8 @@ string convert(int,int,int);
 int main(){
     //1 <= k <=3
     //1 <= p,q <=3
-    cout << convert(2,2,1) << endl;
-    //cout << "(" + convert(1,2,3) + ")";
+    //cout << convert(2,2,1) << endl;
+    cout << "(" + convert(3,1,0) + "(" + convert(1,2,1) + ")" + "(" + convert(2,3,0) + ")" + "U" + convert(2,3,0) + ")*";
 }
 //intermediaries: k
 //start node: p
@@ -174,3 +174,4 @@ string convert(int p, int q, int k){
     return regexp;
 }
 
+//((a(a∪b))∗∪(a(a∪b)∗∪b) ∪ b)∗
